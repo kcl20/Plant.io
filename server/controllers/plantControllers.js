@@ -1,5 +1,5 @@
 const Plant = require("../models/Plant");
-
+const { validateObjectId } = require("../utils/validation");
 exports.getAllPlants = async (req, res) => {
   try {
     const plants = await Plant.find({ user: req.user.id });

@@ -1,13 +1,13 @@
 const express = require('express');
 const router = require('router');
 const { getAllPlants, getPlant, addPlant, updatePlant, deletePlant } = require("../controllers/plantControllers");
-
+const { verifyAccessToken } = require("../middlewares.js/index.js");
 
 // api routes
-router.get("/", getAllPlants);
-router.get("/:plantId", getPlant);
-router.post("/", addPlant);
-router.put("/:plantId", updatePlant);
-router.delete("/:plantId", deletePlant);
+router.get("/", verifyAccessToken,getAllPlants);
+router.get("/:plantId", verifyAccessToken,getPlant);
+router.post("/", verifyAccessToken,addPlant);
+router.put("/:plantId", verifyAccessToken,updatePlant);
+router.delete("/:plantId", verifyAccessToken,deletePlant);
 
 module.exports = router;

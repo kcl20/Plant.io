@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import Input, {  Textarea } from '../components/utils/Input';
+import { Textarea } from '../components/utils/Input';
 import Loader from '../components/utils/Loader';
 import useFetch from '../hooks/useFetch';
 import MainLayout from '../layouts/MainLayout';
@@ -17,7 +17,6 @@ const Plant = () => {
   const mode = plantId === undefined ? "add" : "update";
   const [plant, setPlant] = useState(null);
   const [formData, setFormData] = useState({
-    name: "",
     description: ""
   });
   const [formErrors, setFormErrors] = useState({});
@@ -33,7 +32,7 @@ const Plant = () => {
       const config = { url: `/plants/${plantId}`, method: "get", headers: { Authorization: authState.token } };
       fetchData(config, { showSuccessToast: false }).then((data) => {
         setPlant(data.plant);
-        setFormData({ name: data.plant.name, description: data.plant.description });
+        setFormData({ description: data.plant.description });
       });
     }
   }, [mode, authState, plantId, fetchData]);
@@ -49,7 +48,6 @@ const Plant = () => {
   const handleReset = e => {
     e.preventDefault();
     setFormData({
-      name: plant.name,
       description: plant.description
     });
   }
@@ -95,11 +93,6 @@ const Plant = () => {
           ) : (
             <>
               <h2 className='text-center mb-4'>{mode === "add" ? "Add New Plant" : "Edit Plant"}</h2>
-              <div className="mb-4">
-                <label htmlFor="name">Name</label>
-                <Input type="name" name="name" id="name" value={formData.name} placeholder="Name of Plant" onChange={handleChange} />
-                {fieldError("name")}
-              </div>
               <div className="mb-4">
                 <label htmlFor="description">Description</label>
                 <Textarea type="description" name="description" id="description" value={formData.description} placeholder="Write here.." onChange={handleChange} />

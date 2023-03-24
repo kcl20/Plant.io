@@ -12,7 +12,7 @@
     ],
     "author": "Group 4",
     "license": "ISC",
-    "description": "The backend part of simple plant manager with user authentication",
+    "description": "The server part of simple plant manager with user authentication",
     "dependencies": {
       "bcrypt": "^5.0.1",
       "cors": "^2.8.5",

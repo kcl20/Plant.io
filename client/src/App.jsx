@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { saveProfile } from "./redux/actions/authActions";
+import NotFound from "./pages/NotFound";
 
 function App() {
 

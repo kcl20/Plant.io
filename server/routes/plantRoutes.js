@@ -1,5 +1,5 @@
 const express = require('express');
-const router = require('router');
+const router = express.Router();
 const { getAllPlants, getPlant, addPlant, updatePlant, deletePlant } = require("../controllers/plantControllers");
 const { verifyAccessToken } = require("../middlewares.js/index.js");
 

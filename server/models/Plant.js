@@ -29,13 +29,13 @@ const plantSchema = new mongoose.Schema(
       type: String  
     },
     water: {
-        type: Integer  
+        type: Number  
       },
     humidity: {
-        type: Integer  
+        type: Number  
       },
     temperature: {
-        type: Integer  
+        type: Number  
       },
   },
   {

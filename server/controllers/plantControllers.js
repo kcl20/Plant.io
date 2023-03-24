@@ -1,11 +1,9 @@
 const Plant = require("../models/Plant");
-const { validateObjectId } = require("../utils/validation");
-
 
 exports.getAllPlants = async (req, res) => {
   try {
     const plants = await Plant.find({ user: req.user.id });
-    res.status(200).json({ plants, status: true, msg: "Plants loaded successfully.." });
+    res.status(200).json({ plants, status: true, msg: "Plants found successfully.." });
   }
   catch (err) {
     console.error(err);
@@ -15,9 +13,6 @@ exports.getAllPlants = async (req, res) => {
 
 exports.getPlant = async (req, res) => {
   try {
-    if (!validateObjectId(req.params.plantId)) {
-      return res.status(400).json({ status: false, msg: "Plant id not valid" });
-    }
 
     const plant = await Plant.findOne({ user: req.user.id, _id: req.params.plantId });
     if (!plant) {
@@ -33,11 +28,12 @@ exports.getPlant = async (req, res) => {
 
 exports.addPlant = async (req, res) => {
   try {
-    const { description } = req.body;
-    if (!description) {
-      return res.status(400).json({ status: false, msg: "Description of plant not found" });
+    const { name } = req.body;
+    if (!name) {
+      return res.status(400).json({ status: false, msg: "Name of plant not found" });
     }
-    const plant = await Plant.create({ user: req.user.id, description });
+    const { description, sunlight, water, temperature, humidity } = req.body;
+    const plant = await Plant.create({ user: req.user.id, name, description, sunlight, water, temperature, humidity });
     res.status(200).json({ plant, status: true, msg: "Plant created successfully.." });
   }
   catch (err) {
@@ -48,10 +44,12 @@ exports.addPlant = async (req, res) => {
 
 exports.updatePlant = async (req, res) => {
   try {
-    const { description } = req.body;
-    if (!description) {
-      return res.status(400).json({ status: false, msg: "Description of plant not found" });
+    const { name } = req.body;
+    if (!name) {
+      return res.status(400).json({ status: false, msg: "Name of plant not found" });
     }
+
+    const { description, sunlight, water, temperature, humidity } = req.body;
 
     if (!validateObjectId(req.params.plantId)) {
       return res.status(400).json({ status: false, msg: "Plant id not valid" });
@@ -66,7 +64,7 @@ exports.updatePlant = async (req, res) => {
       return res.status(403).json({ status: false, msg: "You can't update plant of another user" });
     }
 
-    plant = await Plant.findByIdAndUpdate(req.params.plantId, { description }, { new: true });
+    plant = await Plant.findByIdAndUpdate(req.params.plantId, { name, description, sunlight, water, temperature, humidity }, { new: true });
     res.status(200).json({ plant, status: true, msg: "Plant updated successfully.." });
   }
   catch (err) {

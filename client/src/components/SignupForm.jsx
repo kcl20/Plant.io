@@ -31,7 +31,7 @@ const SignupForm = () => {
       return;
     }
 
-    const config = { url: "/auth/signup", method: "post", data: formData };
+    const config = { url: "/authentication/signup", method: "post", data: formData };
     fetchData(config).then(() => {
       navigate("/login");
     });

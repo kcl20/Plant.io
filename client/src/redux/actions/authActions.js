@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 export const postLoginData = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
-    const { data } = await api.post('/auth/login', { email, password });
+    const { data } = await api.post('/authentication/login', { email, password });
     dispatch({
       type: LOGIN_SUCCESS,
       payload: data,

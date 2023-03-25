@@ -62,7 +62,7 @@ const LoginForm = ({ redirectUrl }) => {
           <Loader />
         ) : (
           <>
-            <h2 className='text-center mb-4'>Welcome user, please login here</h2>
+            <h2 className='text-center mb-4'>Welcome, please login here</h2>
             <div className="mb-4">
               <label htmlFor="email" className="after:content-['*'] after:ml-0.5 after:text-red-500">Email</label>
               <Input type="text" name="email" id="email" value={formData.email} placeholder="youremail@domain.com" onChange={handleChange} />

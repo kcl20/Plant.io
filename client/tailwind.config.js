@@ -5,8 +5,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "primary": "#24ab8f",
-        "primary-dark": "#268d77",
+        "primary": "#CCD5AE",
+        "primary-dark": "#D4A373",
       },
       animation: {
         "loader": "loader 1s linear infinite",

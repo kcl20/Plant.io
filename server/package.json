@@ -7,12 +7,12 @@
       "start": "node index.js"
     },
     "keywords": [
-      "Plant manager",
+      "Plantio",
       "Plants"
     ],
     "author": "Group 4",
     "license": "ISC",
-    "description": "The server part of simple plant manager with user authentication",
+    "description": "The server part of simple plant io with user authentication",
     "dependencies": {
       "bcrypt": "^5.0.1",
       "cors": "^2.8.5",

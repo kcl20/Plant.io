@@ -1,6 +1,6 @@
 {
-  "name": "mern-plant-manager",
-  "version": "1.0.0",
+  "name": "plant-io",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {

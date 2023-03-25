@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Allplants from '../Allplants';
 import Plants from '../components/Plants';
 import MainLayout from '../layouts/MainLayout';
-// import Allplants from '../Allplants';
 
 const Home = () => {
 
@@ -26,7 +26,12 @@ const Home = () => {
               <span className='transition-[margin]'>Your ultimate app for plant enthusiasts and green thumbs!</span>
               <span className='relative ml-4 text-base transition-[margin]'><i className="fa-solid fa-arrow-right"></i></span>
             </Link>
+            <><Allplants /></>
           </div>
+       
+       
+
+          
         ) : (
           <>
             <h1 className='text-lg mt-8 mx-8 border-b border-b-gray-300'>Welcome {authState.user.name}</h1>

@@ -1,25 +1,17 @@
-// import {formatISO9075} from "date-fns";
-// import {Link} from "react-router-dom";
-
-// export default function Allplants({_id, name,description,createdAt,author}) {
-
-//   return (
-//     <div className="plants">
-//       <div className="image">
-//         <Link to={`/plants/${_id}`}>
-//           <img src={'http://localhost:3000/'+cover} alt=""/>
-//         </Link>
-//       </div>
-//       <div className="texts">
-//         <Link to={`/plants/${_id}`}>
-//         <h2>{name}</h2>
-//         </Link>
-//         <p className="info">
-//           <a className="author">{author.username}</a>
-//           <time>{formatISO9075(new Date(createdAt))}</time>
-//         </p>
-//         <p className="description">{description}</p>
-//       </div>
-//     </div>
-//   );
-// }
+export default function Allplants() {
+  return (
+    <div className="plant">
+        <div className="plant-image">
+        <img src="https://www.southernliving.com/thmb/teaKzZUma8RyPpmnj8pK6CxwT2k=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/valentine-bouquet-gettyimages-55949391-2000-d675e30abd0243f1bf1d13ecb212d45b.jpg" alt=""/>
+        </div>
+        <div className="texts">
+        <h2>Plant Name</h2>
+        <p className="info">
+          <h3 className="author">user xinnan</h3>
+          <time>2023-03-25 02:23</time>
+        </p>
+        <p className="description">Some description,brief notes, click to view the watering frequency, humidity and other info.</p>
+        </div>
+    </div>
+  )
+}

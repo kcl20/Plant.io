@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Plants from '../components/Plants';
 import MainLayout from '../layouts/MainLayout';
+// import Allplants from '../Allplants';
 
 const Home = () => {
 

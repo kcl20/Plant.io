@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Textarea } from '../components/utils/Input';
+import { Text } from '../components/utils/Input';
 import Loader from '../components/utils/Loader';
 import useFetch from '../hooks/useFetch';
 import MainLayout from '../layouts/MainLayout';
@@ -93,6 +94,11 @@ const Plant = () => {
           ) : (
             <>
               <h2 className='text-center mb-4'>{mode === "add" ? "Add New Plant" : "Edit Plant"}</h2>
+              <div className="mb-4">
+                <label htmlFor="name">Name</label>
+                <Text type="text" name="name" id="name" value={formData.name} placeholder="Name" onChange={handleChange} />
+                {fieldError("name")}
+              </div>
               <div className="mb-4">
                 <label htmlFor="description">Description</label>
                 <Textarea type="description" name="description" id="description" value={formData.description} placeholder="Write here.." onChange={handleChange} />

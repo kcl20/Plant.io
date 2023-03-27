@@ -28,10 +28,6 @@ const Home = () => {
             </Link>
             <><Allplants /></>
           </div>
-       
-       
-
-          
         ) : (
           <>
             <h1 className='text-lg mt-8 mx-8 border-b border-b-gray-300'>Welcome {authState.user.name}</h1>

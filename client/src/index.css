@@ -2,10 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-  box-sizing: border-box;
-}
-
+/* 
 body
 {
   font-family: "Roboto", sans-serif;
@@ -46,4 +43,4 @@ div.plant div.plant-image{
 div.plant p.summary{
   margin:10px 0;
   line-height: 1.8rem;
-}
+} */

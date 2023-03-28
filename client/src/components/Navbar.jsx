@@ -25,7 +25,7 @@ const Navbar = () => {
         <ul className='hidden md:flex gap-4 uppercase font-medium'>
           {authState.isLoggedIn ? (
             <>
-              <li className="bg-blue-500 text-white hover:bg-blue-600 font-medium rounded-md">
+              <li className="bg-green-500 text-white hover:bg-green-600 font-medium rounded-md">
                 <Link to='/plants/add' className='block w-full h-full px-4 py-2'> <i className="fa-solid fa-plus"></i> Add plant </Link>
               </li>
               <li className='py-2 px-3 cursor-pointer hover:bg-gray-200 transition rounded-sm' onClick={handleLogoutClick}>Logout</li>

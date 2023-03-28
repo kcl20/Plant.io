@@ -64,7 +64,9 @@ const Plants = () => {
                     </Tooltip>
 
                   </div>
+                  <div className='whitespace-pre'>{plant.name}</div>
                   <div className='whitespace-pre'>{plant.description}</div>
+                  <div className='whitespace-pre'>{[plant.sunlight, plant.water, plant.humidity, plant.temperature]}</div>
                 </div>
               ))
 

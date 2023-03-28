@@ -20,7 +20,7 @@ const Home = () => {
     <>
       <MainLayout>
         {!isLoggedIn ? (
-          <div className='bg-primary text-white h-[40vh] py-8 text-center'>
+          <div className='bg-primary text-white py-8 text-center'>
             <h1 className='text-2xl'> Welcome to Plant.io</h1>
             <Link to="/signup" className='mt-10 text-xl block space-x-2 hover:space-x-4'>
               <span className='transition-[margin]'>Your ultimate app for plant enthusiasts and green thumbs!</span>
@@ -28,10 +28,6 @@ const Home = () => {
             </Link>
             <><Allplants /></>
           </div>
-       
-       
-
-          
         ) : (
           <>
             <h1 className='text-lg mt-8 mx-8 border-b border-b-gray-300'>Welcome {authState.user.name}</h1>

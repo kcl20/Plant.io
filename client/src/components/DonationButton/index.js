@@ -14,8 +14,11 @@ const DonationButton = ({ itemID, ammount }) => {
         lineItems: [{ price: itemID, quantity: 1 }],
         mode: "payment",
         // change success and cancel urls...
-        successUrl: window.location.protocol + "/",
-        cancelUrl: window.location.protocol + "/",
+        // successUrl: window.location.protocol + "/",
+        // cancelUrl: window.location.protocol + "/",
+
+        successUrl : `${window.location.protocol}//${window.location.host}/success`,
+        cancelUrl: 'http://localhost:3000',
         submitType: "donate",
       })
       .then(function (result) {
@@ -36,7 +39,7 @@ const DonationButton = ({ itemID, ammount }) => {
 export default function App() {
   return (
     <>
-      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed z-50 outline-none focus:outline-none">
         <DonationButton
           ammount={"5.00"}
           itemID="price_1IUx1FJ2iOysJZvP1LD3EzTR"

@@ -133,10 +133,9 @@ const Plant = () => {
           </div>
 
           <div class="four fields">
-            <div class="field">
-              <label>Sunlight</label>
+       
               
-              <div class="ui fluid search selection dropdown">
+              {/* <div class="ui fluid search selection dropdown">
                 <input type="hidden" name="sunlight" id="sunlight" value={formData.sunlight} onChange={handleChange}></input>
                 <i class="dropdown icon"></i>
                 <div class="default text">Level of Sunlight</div>
@@ -145,9 +144,13 @@ const Plant = () => {
                   <div class="item" data-value="medium">Medium</div>
                   <div class="item" data-value="high">High</div>
                 </div>
-              </div>
+              </div> */}
+              <div class="field">
+              <label>Sunlight (High/Medium/Low)</label>
+              <input type="text" name="sunlight" id="sunlight" value={formData.sunlight} placeholder="Level of Sunlight" onChange={handleChange} />
               {fieldError("sunlight")}
             </div>
+
 
             <div class="field">
               <label>Water (ml)</label>

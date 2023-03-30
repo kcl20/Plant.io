@@ -14,8 +14,8 @@ const DonationButton = ({ itemID, ammount }) => {
         lineItems: [{ price: itemID, quantity: 1 }],
         mode: "payment",
         // change success and cancel urls...
-        successUrl: window.location.protocol + "//localpdf.tech/merge",
-        cancelUrl: window.location.protocol + "//localpdf.tech/merge",
+        successUrl: window.location.protocol + "/",
+        cancelUrl: window.location.protocol + "/",
         submitType: "donate",
       })
       .then(function (result) {

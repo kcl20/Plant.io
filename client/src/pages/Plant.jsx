@@ -170,6 +170,7 @@ const Plant = () => {
           </div>
           <button class="ui green submit button" type="submit" onClick={handleSubmit}>{mode === "add" ? "Add plant" : "Update Plant"}</button>
           <button className='ui red submit button' onClick={() => navigate("/")}>Cancel</button>
+          <CloudinaryUploadWidget />
           {mode === "update" && <button class='ui blue submit button' onClick={handleReset}>Reset</button>}
         </form>}
         {/* <form className='m-auto my-16 max-w-[1000px] bg-white p-8 border-2 shadow-md rounded-md'>

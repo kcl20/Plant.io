@@ -4,7 +4,8 @@ const { getAllPlants, getPlant, addPlant, updatePlant, deletePlant } = require("
 const { verifyAccessToken } = require("../middlewares.js/index.js");
 
 // api routes
-router.get("/", verifyAccessToken,getAllPlants);
+// router.get("/", verifyAccessToken,getAllPlants);
+router.get("/",getAllPlants);
 router.get("/:plantId", verifyAccessToken,getPlant);
 router.post("/", verifyAccessToken,addPlant);
 router.put("/:plantId", verifyAccessToken,updatePlant);

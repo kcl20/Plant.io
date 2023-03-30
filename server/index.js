@@ -5,6 +5,7 @@ const cors = require("cors");
 const authenticationRoutes = require("./routes/authenticationRoutes");
 const userRoutes = require("./routes/userRoutes");
 const plantRoutes = require("./routes/plantRoutes");
+const Plant = require("./models/Plant");
 //import env variables
 require("dotenv").config();
 
@@ -26,7 +27,6 @@ app.use("/api/authentication", authenticationRoutes);
 app.use("/api/plants", plantRoutes);
 app.use("/api/user", userRoutes);
 
-//To-do OPENAI chatGPT component
 
 
 

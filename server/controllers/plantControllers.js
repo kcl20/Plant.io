@@ -1,15 +1,32 @@
 const Plant = require("../models/Plant");
 const { validateObjectId } = require("../utils/validation");
+// exports.getAllPlants = async (req, res) => {
+//   try {
+//     const plants = await Plant.find({ user: req.user.id });
+//     res.status(200).json({ plants, status: true, msg: "Plants found successfully.." });
+//   }
+//   catch (err) {
+//     console.error(err);
+//     return res.status(500).json({ status: false, msg: "Internal Server Error" });
+//   }
+// }
+
 exports.getAllPlants = async (req, res) => {
   try {
-    const plants = await Plant.find({ user: req.user.id });
+    let plants;
+    if (req.user) {
+      // If user is authenticated, return only their plant posts
+      plants = await Plant.find({ user: req.user.id }).sort({ createdAt: -1 });
+    } else {
+      // If user is not authenticated, return all plant posts
+      plants = await Plant.find().sort({ createdAt: -1 });
+    }
     res.status(200).json({ plants, status: true, msg: "Plants found successfully.." });
-  }
-  catch (err) {
+  } catch (err) {
     console.error(err);
     return res.status(500).json({ status: false, msg: "Internal Server Error" });
   }
-}
+};
 
 exports.getPlant = async (req, res) => {
   try {

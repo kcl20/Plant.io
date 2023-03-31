@@ -24,7 +24,8 @@
     "web-vitals": "^2.1.4",
     "@cloudinary/react": "^1.11.2",
     "@cloudinary/url-gen": "^1.9.2",
-    "concurrently": "^7.6.0"
+    "concurrently": "^7.6.0",
+    "nodemon": "^2.0.15"
   },
   "scripts": {
     "start": "react-scripts start",

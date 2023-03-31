@@ -22,9 +22,11 @@
         "mongoose": "^6.2.3",
         "openai": "^3.2.1",
         "plant-io": "file:..",
-        "concurrently": "^7.6.0"
+        "concurrently": "^7.6.0",
+        "nodemon": "^2.0.15"
     },
     "devDependencies": {
-        "nodemon": "^2.0.15"
+        "nodemon": "^2.0.15",
+        "concurrently": "^7.6.0"
     }
 }

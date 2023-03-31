@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
+  
   "scripts": {
     "dev-server": "npm run dev --prefix server",
     "dev-client": "npm start --prefix client",
@@ -11,6 +12,7 @@
     "heroku-postbuild": "npm run install-all",
     "start": "cd server && node index.js"
   },
+
   "keywords": [],
   "author": "",
   "license": "ISC",

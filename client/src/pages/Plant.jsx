@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { Textarea } from "../components/utils/Input";
@@ -173,6 +174,7 @@ const Plant = () => {
           <CloudinaryUploadWidget />
           {mode === "update" && <button class='ui blue submit button' onClick={handleReset}>Reset</button>}
         </form>}
+        <img id="uploadedimage" src=""></img>
         {/* <form className='m-auto my-16 max-w-[1000px] bg-white p-8 border-2 shadow-md rounded-md'>
           {loading ? (
             <Loader />

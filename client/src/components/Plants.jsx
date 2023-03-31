@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import Loader from './utils/Loader';
 import Tooltip from './utils/Tooltip';
-import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
+
 
 const Plants = () => {
 

@@ -21,7 +21,8 @@
         "jsonwebtoken": "^8.5.1",
         "mongoose": "^6.2.3",
         "openai": "^3.2.1",
-        "plant-io": "file:.."
+        "plant-io": "file:..",
+        "concurrently": "^7.6.0"
     },
     "devDependencies": {
         "nodemon": "^2.0.15"

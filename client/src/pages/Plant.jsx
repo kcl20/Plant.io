@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -14,6 +14,28 @@ const Plant = () => {
   const navigate = useNavigate();
   const [fetchData, { loading }] = useFetch();
   const { plantId } = useParams();
+
+  const cloudName = "djj0v2fgw"; 
+  const uploadPreset = "q8vxj258"; 
+  
+  var myWidget = window.cloudinary.createUploadWidget(
+    {
+      cloudName: cloudName,
+      uploadPreset: uploadPreset
+
+    },
+    (error, result) => {
+      if (!error && result && result.event === "success") {
+        console.log("Done! Here is the image info: ", result.info);
+        document
+          .getElementById("uploadedimage")
+          .setAttribute("src", result.info.secure_url);
+          setFormData({secure_url: result.info.secure_url});
+
+      }
+    }
+  );
+     
 
   const mode = plantId === undefined ? "add" : "update";
   const [plant, setPlant] = useState(null);
@@ -53,6 +75,13 @@ const Plant = () => {
       });
     }
   }, [mode, authState, plantId, fetchData]);
+
+  const handleUploadButton =(e) => {
+    e.preventDefault();
+    myWidget.open();
+    }
+
+
 
   const handleChange = (e) => {
     setFormData({
@@ -137,25 +166,11 @@ const Plant = () => {
           </div>
 
           <div class="four fields">
-       
-              
-              {/* <div class="ui fluid search selection dropdown">
-                <input type="hidden" name="sunlight" id="sunlight" value={formData.sunlight} onChange={handleChange}></input>
-                <i class="dropdown icon"></i>
-                <div class="default text">Level of Sunlight</div>
-                <div class="menu">
-                  <div class="item" data-value="low">Low</div>
-                  <div class="item" data-value="medium">Medium</div>
-                  <div class="item" data-value="high">High</div>
-                </div>
-              </div> */}
               <div class="field">
               <label>Sunlight (High/Medium/Low)</label>
               <input type="text" name="sunlight" id="sunlight" value={formData.sunlight} placeholder="Level of Sunlight" onChange={handleChange} />
               {fieldError("sunlight")}
             </div>
-
-
             <div class="field">
               <label>Water (ml)</label>
               <input type="number" name="water" id="water" value={formData.water} placeholder="Water" onChange={handleChange} />
@@ -171,42 +186,21 @@ const Plant = () => {
               <input type="number" name="temperature" id="temperature" value={formData.temperature} placeholder="Temperature" onChange={handleChange} />
               {fieldError("temperature")}
             </div>
+            <div class="field">
+              <label>secure_url</label>
+              <input type="string" name="secure_url" id="secure_url" value={formData.secure_url} placeholder="secure_url" />
+              {fieldError("secure_url")}
+            </div>
           </div>
           <button class="ui green submit button" type="submit" onClick={handleSubmit}>{mode === "add" ? "Add plant" : "Update Plant"}</button>
           <button className='ui red submit button' onClick={() => navigate("/")}>Cancel</button>
-          <CloudinaryUploadWidget />
+          <button className='ui blue submit button' onClick={(handleUploadButton)}>Upload</button>
           {mode === "update" && <button class='ui blue submit button' onClick={handleReset}>Reset</button>}
         </form>}
         <img id="uploadedimage" src=""></img>
-        {/* <img id="uploadedimage" src={secure_url}></img> */}
-        {/* <form className='m-auto my-16 max-w-[1000px] bg-white p-8 border-2 shadow-md rounded-md'>
-          {loading ? (
-            <Loader />
-          ) : (
-            <>
-              <h2 className='text-center mb-4'>{mode === "add" ? "Add New Plant" : "Edit Plant"}</h2>
-              <div className="mb-4">
-                <label htmlFor="name">Name</label>
-                <Text type="text" name="name" id="name" value={formData.name} placeholder="Name" onChange={handleChange} />
-                {fieldError("name")}
-              </div>
-              <div className="mb-4">
-                <label htmlFor="description">Description</label>
-                <Textarea type="description" name="description" id="description" value={formData.description} placeholder="Write here.." onChange={handleChange} />
-                {fieldError("description")}
-              </div>
-              <div className="mb-4">
-                <label htmlFor="sunlight">Sunlight</label>
-                <Text type="text" name="sunlight" id="sunlight" value={formData.sunlight} placeholder="Sunlight" onChange={handleChange} />
-                {fieldError("sunlight")}
-              </div>
 
-              <button className='bg-primary text-white px-4 py-2 font-medium hover:bg-primary-dark' onClick={handleSubmit}>{mode === "add" ? "Add plant" : "Update Plant"}</button>
-              <button className='ml-4 bg-red-500 text-white px-4 py-2 font-medium' onClick={() => navigate("/")}>Cancel</button>
-              {mode === "update" && <button className='ml-4 bg-blue-500 text-white px-4 py-2 font-medium hover:bg-blue-600' onClick={handleReset}>Reset</button>}
-            </>
-          )}
-        </form> */}
+        {/* <img id="uploadedimage" src={secure_url}></img> */}
+        
       </MainLayout>
     </>
   );

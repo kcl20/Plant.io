@@ -24,8 +24,7 @@ const Plant = () => {
     water: "",
     humidity: "",
     temperature: "",
-    version: "",
-    public_id: "",
+    secure_url: "",
   });
   const [formErrors, setFormErrors] = useState({});
 
@@ -49,8 +48,7 @@ const Plant = () => {
           water: data.plant.water,
           humidity: data.plant.humidity,
           temperature: data.plant.temperature,
-          version: data.plant.version,
-          public_id: data.plant.public_id,
+          secure_url: data.plant.secure_url,
         });
       });
     }
@@ -72,8 +70,7 @@ const Plant = () => {
       water: "",
       humidity: "",
       temperature: "",
-      version: "",
-      public_id: "",
+      secure_url: "",
     });
   };
 
@@ -181,6 +178,7 @@ const Plant = () => {
           {mode === "update" && <button class='ui blue submit button' onClick={handleReset}>Reset</button>}
         </form>}
         <img id="uploadedimage" src=""></img>
+        {/* <img id="uploadedimage" src={secure_url}></img> */}
         {/* <form className='m-auto my-16 max-w-[1000px] bg-white p-8 border-2 shadow-md rounded-md'>
           {loading ? (
             <Loader />

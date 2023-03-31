@@ -37,6 +37,12 @@ const plantSchema = new mongoose.Schema(
     temperature: {
         type: Number  
       },
+      version: {
+        type: String,
+      },
+      public_id: {
+        type: String
+      }
   },
   {
     timestamps: true,

@@ -24,6 +24,8 @@ const Plant = () => {
     water: "",
     humidity: "",
     temperature: "",
+    version: "",
+    public_id: "",
   });
   const [formErrors, setFormErrors] = useState({});
 
@@ -47,6 +49,8 @@ const Plant = () => {
           water: data.plant.water,
           humidity: data.plant.humidity,
           temperature: data.plant.temperature,
+          version: data.plant.version,
+          public_id: data.plant.public_id,
         });
       });
     }
@@ -68,6 +72,8 @@ const Plant = () => {
       water: "",
       humidity: "",
       temperature: "",
+      version: "",
+      public_id: "",
     });
   };
 

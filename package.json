@@ -15,11 +15,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^7.1.0"
+    "concurrently": "^7.6.0"
   },
   "dependencies": {
-    "queue-microtask": "^1.2.3",
     "@cloudinary/react": "^1.11.2",
-    "@cloudinary/url-gen": "^1.9.2"
+    "@cloudinary/url-gen": "^1.9.2",
+    "queue-microtask": "^1.2.3"
   }
 }

@@ -6,6 +6,8 @@ const authenticationRoutes = require("./routes/authenticationRoutes");
 const userRoutes = require("./routes/userRoutes");
 const plantRoutes = require("./routes/plantRoutes");
 const Plant = require("./models/Plant");
+const path = require('path');
+
 //import env variables
 require("dotenv").config();
 

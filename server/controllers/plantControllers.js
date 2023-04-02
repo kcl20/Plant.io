@@ -49,8 +49,8 @@ exports.addPlant = async (req, res) => {
     if (!name) {
       return res.status(400).json({ status: false, msg: "Name of plant not found" });
     }
-    const { description, sunlight, water, temperature, humidity } = req.body;
-    const plant = await Plant.create({ user: req.user.id, name, description, sunlight, water, temperature, humidity });
+    const { description, sunlight, water, temperature, humidity, secure_url } = req.body;
+    const plant = await Plant.create({ user: req.user.id, name, description, sunlight, water, temperature, humidity, secure_url });
     res.status(200).json({ plant, status: true, msg: "Plant created successfully.." });
   }
   catch (err) {
@@ -66,7 +66,7 @@ exports.updatePlant = async (req, res) => {
       return res.status(400).json({ status: false, msg: "Name of plant not found" });
     }
 
-    const { description, sunlight, water, temperature, humidity } = req.body;
+    const { description, sunlight, water, temperature, humidity, secure_url } = req.body;
 
     if (!validateObjectId(req.params.plantId)) {
       return res.status(400).json({ status: false, msg: "Plant id not valid" });
@@ -81,7 +81,7 @@ exports.updatePlant = async (req, res) => {
       return res.status(403).json({ status: false, msg: "You can't update plant of another user" });
     }
 
-    plant = await Plant.findByIdAndUpdate(req.params.plantId, { name, description, sunlight, water, temperature, humidity }, { new: true });
+    plant = await Plant.findByIdAndUpdate(req.params.plantId, { name, description, sunlight, water, temperature, humidity, secure_url }, { new: true });
     res.status(200).json({ plant, status: true, msg: "Plant updated successfully.." });
   }
   catch (err) {

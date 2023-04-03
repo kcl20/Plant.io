@@ -1,16 +1,16 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const cors = require("cors");
-const authenticationRoutes = require("./routes/authenticationRoutes");
-const userRoutes = require("./routes/userRoutes");
-const plantRoutes = require("./routes/plantRoutes");
-const Plant = require("./models/Plant");
-const allplantsRoutes = require("./routes/allplantsRoutes");
+const cors = require('cors');
+const authenticationRoutes = require('./routes/authenticationRoutes');
+const userRoutes = require('./routes/userRoutes');
+const plantRoutes = require('./routes/plantRoutes');
+const Plant = require('./models/Plant');
+const allplantsRoutes = require('./routes/allplantsRoutes');
 const path = require('path');
 
 //import env variables
-require("dotenv").config();
+require('dotenv').config();
 
 app.use(express.json());
 app.use(cors());

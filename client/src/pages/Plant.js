@@ -1,20 +1,33 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect, useRef, useState } from "react";
 import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import MainLayout from "../layouts/MainLayout";
 import validateManyFields from "../validations";
-import { Button, Divider, Dropdown, Grid, Segment, Image } from "semantic-ui-react";
+import {
+  Button,
+  Divider,
+  Dropdown,
+  Grid,
+  Segment,
+  Image,
+} from "semantic-ui-react";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import TextField from "@material-ui/core/TextField";
 
 const Plant = () => {
   const authState = useSelector((state) => state.authReducer);
   const navigate = useNavigate();
   const [fetchData, { loading }] = useFetch();
   const { plantId } = useParams();
+  const [options, setOptions] = useState([]);
+  const previousController = useRef();
 
   const cloudName = "djj0v2fgw";
   const uploadPreset = "q8vxj258";
+
+  const apiKey = "sk-Z5HR642b4474e3852420";
 
   var myWidget = window.cloudinary.createUploadWidget(
     {
@@ -32,7 +45,45 @@ const Plant = () => {
     }
   );
 
-  const options = [
+  const getData = (searchTerm) => {
+    if (previousController.current) {
+      previousController.current.abort();
+    }
+    const controller = new AbortController();
+    const signal = controller.signal;
+    previousController.current = controller;
+    fetch(
+      `https://perenual.com/api/species-list?key=${apiKey}&q=` + searchTerm,
+      {
+        signal,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    )
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (myJson) {
+        console.log("search term: " + searchTerm + ", results: ", myJson.data);
+        const updatedOptions = myJson.data.map((p) => {
+          console.log(p.common_name);
+          return { name: p.common_name };
+        });
+        setOptions(updatedOptions);
+      });
+  };
+
+  const onInputChange = (e, value, reason) => {
+    if (value) {
+      getData(value);
+    } else {
+      setOptions([]);
+    }
+  };
+
+  const sun_options = [
     {
       text: "Low",
       value: "low",
@@ -167,20 +218,30 @@ const Plant = () => {
     <>
       <MainLayout>
         <Segment>
-          <Grid columns={2} stackable >
+          <Grid columns={2} stackable>
             <Divider vertical>Plant</Divider>
             <Grid.Row verticalAlign="middle">
               <Grid.Column>
                 <form class="ui form m-8 my-16 max-w-[1000px] p-8 border-2 shadow-md rounded-md">
-                  <div class="required field">
+                  <div class="field">
                     <label>Name</label>
-                    <input
-                      name="name"
-                      id="name"
-                      value={formData.name}
-                      placeholder="Name of the Plant"
-                      onChange={handleChange}
+                    <Autocomplete
+                      options={options}
+                      onInputChange={onInputChange}
+                      getOptionLabel={(option) => option.name}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Name of the Plant"
+                          name="name"
+                          id="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          variant="outlined"
+                        />
+                      )}
                     />
+
                     {fieldError("name")}
                   </div>
 
@@ -209,7 +270,7 @@ const Plant = () => {
                         selection
                         search
                         scrolling
-                        options={options}
+                        options={sun_options}
                         onChange={handleChange}
                       />
                       {fieldError("sunlight")}
@@ -264,35 +325,45 @@ const Plant = () => {
                     </div>
                   </div>
                   <div class="ui three bottom attached buttons">
-                  <button
-                    class="ui olive submit button"
-                    type="submit"
-                    onClick={handleSubmit}
-                  >
-                    {mode === "add" ? "Add plant" : "Update Plant"}
-                  </button>
-
-                  <button
-                    class="ui yellow submit button"
-                    onClick={() => navigate("/")}
-                  >
-                    Cancel
-                  </button>
-                  {mode === "update" && (
-                    <button class="ui orange submit button" onClick={handleReset}>
-                      Reset
+                    <button
+                      class="ui olive submit button"
+                      type="submit"
+                      onClick={handleSubmit}
+                    >
+                      {mode === "add" ? "Add plant" : "Update Plant"}
                     </button>
-                  )}
+
+                    <button
+                      class="ui yellow submit button"
+                      onClick={() => navigate("/")}
+                    >
+                      Cancel
+                    </button>
+                    {mode === "update" && (
+                      <button
+                        class="ui orange submit button"
+                        onClick={handleReset}
+                      >
+                        Reset
+                      </button>
+                    )}
                   </div>
                 </form>
               </Grid.Column>
 
               <Grid.Column textAlign="center">
-                <div class="m-8" >
-                <Image id="uploadedimage" src={formData.secure_url} size='medium' circular centered dimmer></Image>
+                <div class="m-8">
+                  <Image
+                    id="uploadedimage"
+                    src={formData.secure_url}
+                    size="medium"
+                    circular
+                    centered
+                    dimmer
+                  ></Image>
                 </div>
                 <Button color="olive" onClick={handleUploadButton}>
-                  Upload Image 
+                  Upload Image
                 </Button>
               </Grid.Column>
             </Grid.Row>

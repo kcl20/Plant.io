@@ -13,7 +13,7 @@ const Login = () => {
 
   return (
     <>
-      <MainLayout>
+      <MainLayout >
         <LoginForm redirectUrl={redirectUrl} />
       </MainLayout>
     </>

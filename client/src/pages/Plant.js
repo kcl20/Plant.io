@@ -265,7 +265,7 @@ const Plant = () => {
                   </div>
                   <div class="ui three bottom attached buttons">
                   <button
-                    class="ui green submit button"
+                    class="ui olive submit button"
                     type="submit"
                     onClick={handleSubmit}
                   >
@@ -273,13 +273,13 @@ const Plant = () => {
                   </button>
 
                   <button
-                    class="ui red submit button"
+                    class="ui yellow submit button"
                     onClick={() => navigate("/")}
                   >
                     Cancel
                   </button>
                   {mode === "update" && (
-                    <button class="ui blue submit button" onClick={handleReset}>
+                    <button class="ui orange submit button" onClick={handleReset}>
                       Reset
                     </button>
                   )}
@@ -291,7 +291,7 @@ const Plant = () => {
                 <div class="m-8" >
                 <Image id="uploadedimage" src={formData.secure_url} size='medium' circular centered dimmer></Image>
                 </div>
-                <Button primary onClick={handleUploadButton}>
+                <Button color="olive" onClick={handleUploadButton}>
                   Upload Image 
                 </Button>
               </Grid.Column>

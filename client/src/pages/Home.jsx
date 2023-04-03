@@ -20,11 +20,11 @@ const Home = () => {
     <>
       <MainLayout>
         {!isLoggedIn ? (
-          <div className="bg-primary text-white py-8 text-center">
+          <div className="bg-gradient-to-r from-primary-dark via-primary to-primary-light text-white py-8 text-center">
             <h1 className="text-2xl"> Welcome to Plant.io</h1>
             <Link
               to="/signup"
-              className="mt-10 text-xl block space-x-2 hover:space-x-4"
+              className="mt-10 text-xl block space-x-2 hover:space-x-4 text-amber-300 hover:text-amber-100"
             >
               <span className="transition-[margin]">
                 Your ultimate app for plant enthusiasts and green thumbs!

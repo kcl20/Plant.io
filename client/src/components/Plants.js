@@ -54,7 +54,7 @@ const Plants = () => {
                 <span>No plants found</span>
                 <Link
                   to="/plants/add"
-                  class="bg-blue-500 text-white hover:bg-blue-600 font-medium rounded-md px-4 py-2"
+                  class="bg-primary hover:bg-amber-300 text-white font-medium rounded-md px-4 py-2"
                 >
                   + Add new plant{" "}
                 </Link>
@@ -93,7 +93,7 @@ const Plants = () => {
                   </Card.Content>
                   <Card.Content extra>
                     <div class="ui fluid two bottom attached buttons">
-                      <Button animated="vertical" color="blue" as="a">
+                      <Button animated="vertical" color="olive" as="a">
                         <Link to={`/plants/${plant._id}`} >
                           <Button.Content hidden>Edit</Button.Content>
                           <Button.Content visible>
@@ -101,7 +101,7 @@ const Plants = () => {
                           </Button.Content>
                         </Link>
                       </Button>
-                      <Button animated="vertical" onClick={() => handleDelete(plant._id)}>
+                      <Button animated="vertical" color="orange" onClick={() => handleDelete(plant._id)}>
                         <Button.Content hidden>Delete</Button.Content>
                         <Button.Content visible>
                           <Icon name="trash" />

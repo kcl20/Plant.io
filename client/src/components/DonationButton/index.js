@@ -29,7 +29,7 @@ const DonationButton = ({ itemID, ammount }) => {
   };
   return (
     <button
-      className="flex items-center justify-center bg-blue-500 text-white font-bold py-2 px-4 rounded"
+      className="flex items-center justify-center bg-primary hover:text-amber-300 text-white font-bold py-2 px-4 rounded"
       onClick={handleClick}
     >
       Donate ${ammount}
@@ -39,7 +39,7 @@ const DonationButton = ({ itemID, ammount }) => {
 export default function App() {
   return (
     <>
-      <div className="flex items-center justify-center bg-blue-500 text-white font-bold py-2 px-4 rounded">
+      <div className="flex items-center justify-center bg-primary text-white font-bold py-2 px-4 rounded">
         <DonationButton
           ammount={"5.00"}
           itemID="price_1IUx1FJ2iOysJZvP1LD3EzTR"

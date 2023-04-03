@@ -18,27 +18,27 @@ const Navbar = () => {
 
   return (
     <>
-      <header className='flex justify-between sticky top-0 p-4 bg-white shadow-sm items-center z-50'>
-        <h2 className='cursor-pointer uppercase font-medium'>
-          <Link to="/"> Plant.io </Link>
+      <header className='flex justify-between sticky top-0 p-4 bg-gradient-to-r from-primary-dark to-primary shadow-sm items-center z-50'>
+        <h2 className='cursor-pointer uppercase font-medium '>
+          <Link to="/" className='text-amber-300 hover:text-amber-100'> Plant.io </Link>
         </h2>
         <ul className='hidden md:flex gap-4 uppercase font-medium'>
           {authState.isLoggedIn ? (
             <>
-              <li className="bg-green-500 text-white hover:bg-green-600 font-medium rounded-md">
-                <Link to='/plants/add' className='block w-full h-full px-4 py-2'> <i className="fa-solid fa-plus"></i> Add plant </Link>
+              <li className="bg-amber-300 hover:bg-amber-100 font-medium rounded-md">
+                <Link to='/plants/add' className='block w-full h-full px-4 py-2 text-white hover:text-primary'> <i className="fa-solid fa-plus"></i> Add plant </Link>
               </li>
-              <li className='py-2 px-3 cursor-pointer hover:bg-gray-200 transition rounded-sm' onClick={handleLogoutClick}>Logout</li>
+              <li className='py-2 px-3 cursor-pointer hover:bg-amber-300 text-amber-100 transition rounded-sm' onClick={handleLogoutClick}>Logout</li>
             </>
           ) : (
-            <li className='py-2 px-3 cursor-pointer text-primary hover:bg-gray-100 transition rounded-sm'><Link to="/login">Login</Link></li>
+            <li className='py-2 px-3 cursor-pointer hover:bg-amber-300 text-amber-100 transition rounded-sm'><Link to="/login" className='text-amber-100'>Login</Link></li>
           )}
         </ul>
         <span className='md:hidden cursor-pointer' onClick={toggleNavbar}><i className="fa-solid fa-bars"></i></span>
 
 
         {/* Navbar displayed as sidebar on smaller screens */}
-        <div className={`absolute md:hidden right-0 top-0 bottom-0 transition ${(isNavbarOpen === true) ? 'translate-x-0' : 'translate-x-full'} bg-gray-100 shadow-md w-screen sm:w-9/12 h-screen`}>
+        <div className={`absolute md:hidden right-0 top-0 bottom-0 transition ${(isNavbarOpen === true) ? 'translate-x-0' : 'translate-x-full'} bg-primary shadow-md w-screen sm:w-9/12 h-screen`}>
           <div className='flex'>
             <span className='m-4 ml-auto cursor-pointer' onClick={toggleNavbar}><i className="fa-solid fa-xmark"></i></span>
           </div>
@@ -51,7 +51,7 @@ const Navbar = () => {
                 <li className='py-2 px-3 cursor-pointer hover:bg-gray-200 transition rounded-sm' onClick={handleLogoutClick}>Logout</li>
               </>
             ) : (
-              <li className='py-2 px-3 cursor-pointer text-primary hover:bg-gray-200 transition rounded-sm'><Link to="/login">Login</Link></li>
+              <li className='py-2 px-3 cursor-pointer hover:bg-amber-300 transition rounded-sm'><Link to="/login" className='text-amber-100'>Login</Link></li>
             )}
           </ul>
         </div>

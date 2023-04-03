@@ -48,12 +48,20 @@ const LoginForm = ({ redirectUrl }) => {
 
 
 
+  // const fieldError = (field) => (
+  //   <p className={`mt-1 text-pink-600 text-sm ${formErrors[field] ? "block" : "hidden"}`}>
+  //     <i className='mr-2 fa-solid fa-circle-exclamation'></i>
+  //     {formErrors[field]}
+  //   </p>
+  // )
+
   const fieldError = (field) => (
-    <p className={`mt-1 text-pink-600 text-sm ${formErrors[field] ? "block" : "hidden"}`}>
+    <p className={`mt-1 text-pink-600 text-sm ${formErrors?.[field] ? "block" : "hidden"}`}>
       <i className='mr-2 fa-solid fa-circle-exclamation'></i>
-      {formErrors[field]}
+      {formErrors?.[field]}
     </p>
   )
+  
 
   return (
     <>

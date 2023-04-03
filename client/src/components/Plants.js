@@ -63,7 +63,8 @@ const Plants = () => {
               plants.map((plant, index) => (
                 <Card>
                   <Card.Content>
-                    <Card.Header>{plant.name}</Card.Header>
+                    {/* <Card.Header>{plant.name}</Card.Header> */}
+                    <Card.Header>{plant.name || "No Name"}</Card.Header>
                   </Card.Content>
                   <Image
                     src={plant.secure_url}

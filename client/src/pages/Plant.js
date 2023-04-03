@@ -2,14 +2,10 @@ import React, { Component, useEffect, useState } from "react";
 import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-// import { Textarea } from "../components/utils/Input";
-// import { Text } from "../components/utils/Input";
-// import Loader from "../components/utils/Loader";
 import useFetch from "../hooks/useFetch";
 import MainLayout from "../layouts/MainLayout";
 import validateManyFields from "../validations";
-import { Dropdown } from 'semantic-ui-react'
-
+import { Button, Divider, Dropdown, Grid, Segment, Image } from "semantic-ui-react";
 
 const Plant = () => {
   const authState = useSelector((state) => state.authReducer);
@@ -17,14 +13,13 @@ const Plant = () => {
   const [fetchData, { loading }] = useFetch();
   const { plantId } = useParams();
 
-  const cloudName = "djj0v2fgw"; 
-  const uploadPreset = "q8vxj258"; 
-  
+  const cloudName = "djj0v2fgw";
+  const uploadPreset = "q8vxj258";
+
   var myWidget = window.cloudinary.createUploadWidget(
     {
       cloudName: cloudName,
-      uploadPreset: uploadPreset
-
+      uploadPreset: uploadPreset,
     },
     (error, result) => {
       if (!error && result && result.event === "success") {
@@ -32,9 +27,7 @@ const Plant = () => {
         document
           .getElementById("uploadedimage")
           .setAttribute("src", result.info.secure_url);
-
-          // setFormData({secure_url: result.info.secure_url});
-          setFormData({ ...formData, secure_url: result.info.secure_url });
+        setFormData({ ...formData, secure_url: result.info.secure_url });
       }
     }
   );
@@ -42,16 +35,16 @@ const Plant = () => {
   const options = [
     {
       text: "Low",
-      value: "low"
+      value: "low",
     },
     {
       text: "Medium",
-      value: "medium"
+      value: "medium",
     },
     {
       text: "High",
-      value: "high"
-    }
+      value: "high",
+    },
   ];
 
   const mode = plantId === undefined ? "add" : "update";
@@ -93,22 +86,22 @@ const Plant = () => {
     }
   }, [mode, authState, plantId, fetchData]);
 
-  const handleUploadButton =(e) => {
+  const handleUploadButton = (e) => {
     e.preventDefault();
     myWidget.open();
-    }
+  };
 
   const handleChange = (e, data) => {
-    if(e.target.value){
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
+    if (e.target.value) {
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.value,
+      });
     } else {
-        setFormData({
-            ...formData,
-            [data.name]: data.value
-        });
+      setFormData({
+        ...formData,
+        [data.name]: data.value,
+      });
     }
   };
 
@@ -173,55 +166,138 @@ const Plant = () => {
   return (
     <>
       <MainLayout>
-        {<form class="ui form m-8 my-16 max-w-[1000px] p-8 border-2 shadow-md rounded-md">
-          <div class="required field">
-            <label>Name</label>
-            <input name="name" id="name" value={formData.name} placeholder="Name of the Plant" onChange={handleChange} />
-            {fieldError("name")}
-          </div>
+        <Segment>
+          <Grid columns={2} stackable >
+            <Divider vertical>Plant</Divider>
+            <Grid.Row verticalAlign="middle">
+              <Grid.Column>
+                <form class="ui form m-8 my-16 max-w-[1000px] p-8 border-2 shadow-md rounded-md">
+                  <div class="required field">
+                    <label>Name</label>
+                    <input
+                      name="name"
+                      id="name"
+                      value={formData.name}
+                      placeholder="Name of the Plant"
+                      onChange={handleChange}
+                    />
+                    {fieldError("name")}
+                  </div>
 
-          <div class="field">
-            <label>Description</label>
-            <textarea rows="3" name="description" id="description" value={formData.description} placeholder="Describe the plant.." onChange={handleChange} />
-            {fieldError("description")}
-          </div>
+                  <div class="field">
+                    <label>Description</label>
+                    <textarea
+                      rows="3"
+                      name="description"
+                      id="description"
+                      value={formData.description}
+                      placeholder="Describe the plant.."
+                      onChange={handleChange}
+                    />
+                    {fieldError("description")}
+                  </div>
 
-          <div class="four fields">
-              <div class="field">
-              <label>Sunlight (High/Medium/Low)</label>
-              <Dropdown name="sunlight" id="sunlight" value={formData.sunlight} placeholder="Level of Sunlight" 
-              fluid selection search scrolling options={options} onChange={handleChange}/>
-              {fieldError("sunlight")}
-            </div>
-            <div class="field">
-              <label>Water (ml)</label>
-              <input type="number" name="water" id="water" value={formData.water} placeholder="Water" onChange={handleChange} />
-              {fieldError("water")}
-            </div>
-            <div class="field">
-              <label>Humidity (%)</label>
-              <input type="number" name="humidity" id="humidity" value={formData.humidity} placeholder="Humidity" onChange={handleChange} />
-              {fieldError("humidity")}
-            </div>
-            <div class="field">
-              <label>Temperature (°C)</label>
-              <input type="number" name="temperature" id="temperature" value={formData.temperature} placeholder="Temperature" onChange={handleChange} />
-              {fieldError("temperature")}
-            </div>
-            <div class="field">
-              <label>secure_url</label>
-              <input type="string" name="secure_url" id="secure_url" value={formData.secure_url} placeholder="secure_url" onChange={handleChange} />
-              {fieldError("secure_url")}
-            </div>
-          </div>
-          <button class="ui green submit button" type="submit" onClick={handleSubmit}>{mode === "add" ? "Add plant" : "Update Plant"}</button>
-          <button class='ui red submit button' onClick={() => navigate("/")}>Cancel</button>
-          <button class='ui blue submit button' onClick={(handleUploadButton)}>Upload</button>
-          {mode === "update" && <button class='ui blue submit button' onClick={handleReset}>Reset</button>}
-        </form>}
+                  <div class="four fields">
+                    <div class="field">
+                      <label>Sunlight </label>
+                      <Dropdown
+                        name="sunlight"
+                        id="sunlight"
+                        value={formData.sunlight}
+                        placeholder="Sunlight"
+                        fluid
+                        selection
+                        search
+                        scrolling
+                        options={options}
+                        onChange={handleChange}
+                      />
+                      {fieldError("sunlight")}
+                    </div>
+                    <div class="field">
+                      <label>Water (ml)</label>
+                      <input
+                        type="number"
+                        name="water"
+                        id="water"
+                        value={formData.water}
+                        placeholder="Water"
+                        onChange={handleChange}
+                      />
+                      {fieldError("water")}
+                    </div>
+                    <div class="field">
+                      <label>Humidity (%)</label>
+                      <input
+                        type="number"
+                        name="humidity"
+                        id="humidity"
+                        value={formData.humidity}
+                        placeholder="Humidity"
+                        onChange={handleChange}
+                      />
+                      {fieldError("humidity")}
+                    </div>
+                    <div class="field">
+                      <label>Temperature (°C)</label>
+                      <input
+                        type="number"
+                        name="temperature"
+                        id="temperature"
+                        value={formData.temperature}
+                        placeholder="Temperature"
+                        onChange={handleChange}
+                      />
+                      {fieldError("temperature")}
+                    </div>
+                    <div class="field hidden">
+                      <label>secure_url</label>
+                      <input
+                        type="string"
+                        name="secure_url"
+                        id="secure_url"
+                        value={formData.secure_url}
+                        placeholder="secure_url"
+                        onChange={handleChange}
+                      />
+                      {fieldError("secure_url")}
+                    </div>
+                  </div>
+                  <div class="ui three bottom attached buttons">
+                  <button
+                    class="ui green submit button"
+                    type="submit"
+                    onClick={handleSubmit}
+                  >
+                    {mode === "add" ? "Add plant" : "Update Plant"}
+                  </button>
 
-        <img id="uploadedimage" src={formData.secure_url}></img>
-        
+                  <button
+                    class="ui red submit button"
+                    onClick={() => navigate("/")}
+                  >
+                    Cancel
+                  </button>
+                  {mode === "update" && (
+                    <button class="ui blue submit button" onClick={handleReset}>
+                      Reset
+                    </button>
+                  )}
+                  </div>
+                </form>
+              </Grid.Column>
+
+              <Grid.Column textAlign="center">
+                <div class="m-8" >
+                <Image id="uploadedimage" src={formData.secure_url} size='medium' circular centered dimmer></Image>
+                </div>
+                <Button primary onClick={handleUploadButton}>
+                  Upload Image 
+                </Button>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Segment>
       </MainLayout>
     </>
   );

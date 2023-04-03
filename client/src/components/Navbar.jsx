@@ -18,7 +18,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className='flex justify-between sticky top-0 p-4 bg-white shadow-sm items-center'>
+      <header className='flex justify-between sticky top-0 p-4 bg-white shadow-sm items-center z-50'>
         <h2 className='cursor-pointer uppercase font-medium'>
           <Link to="/"> Plant.io </Link>
         </h2>

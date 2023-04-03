@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import Loader from "./utils/Loader";
-import Tooltip from "./utils/Tooltip";
+
 import { Button, Card, Image, Icon, Popup, List } from "semantic-ui-react";
 
 const Plants = () => {
@@ -13,12 +13,12 @@ const Plants = () => {
 
   const fetchPlants = useCallback(() => {
     const config = {
-      url: "/plants",
+      url: "/plants/user",
       method: "get",
       headers: { Authorization: authState.token },
     };
     fetchData(config, { showSuccessToast: false }).then((data) =>
-      setPlants(data.plants)
+      setPlants(data.plants),
     );
   }, [authState.token, fetchData]);
 
@@ -36,15 +36,11 @@ const Plants = () => {
     fetchData(config).then(() => fetchPlants());
   };
 
-  const onButtonClick = (e) => {
-    e.preventDefault();
-  };
-
   return (
     <>
       <div class="my-2 mx-auto max-w-[1000px] py-4">
         {plants.length !== 0 && (
-          <h2 class="my-2 ml-2 md:ml-0 text-xl">
+          <h2 class="my-8 text-xl text-center">
             Your plants ({plants.length})
           </h2>
         )}
@@ -52,7 +48,7 @@ const Plants = () => {
           <Loader />
         ) : (
           
-          <div class="ui fluid cards">
+          <div class="ui fluid raised link centered cards" >
             {plants.length === 0 ? (
               <div class="w-[600px] h-[300px] flex items-center justify-center gap-4">
                 <span>No plants found</span>
@@ -79,7 +75,7 @@ const Plants = () => {
                     <Card.Description>{plant.description}</Card.Description>
                   </Card.Content>
                   <Card.Content extra>
-                  <List celled horizontal>
+                  <List celled horizontal >
                       <List.Item>
                         <Popup trigger={<span><Icon name="sun" />{plant.sunlight}</span> }content="Sunlight" inverted/>
                       </List.Item>
@@ -97,10 +93,10 @@ const Plants = () => {
                   <Card.Content extra>
                     <div class="ui fluid two bottom attached buttons">
                       <Button animated="vertical" color="blue" as="a">
-                        <Link to={`/plants/${plant._id}`}>
+                        <Link to={`/plants/${plant._id}`} >
                           <Button.Content hidden>Edit</Button.Content>
                           <Button.Content visible>
-                            <Icon name="edit" />
+                            <Icon name="edit"/>
                           </Button.Content>
                         </Link>
                       </Button>

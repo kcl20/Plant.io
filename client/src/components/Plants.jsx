@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import Loader from "./utils/Loader";
 import Tooltip from "./utils/Tooltip";
-import { Button, Card, Container, Image, Icon, Popup, List } from "semantic-ui-react";
+import { Button, Card, Image, Icon, Popup, List } from "semantic-ui-react";
 
 const Plants = () => {
   const authState = useSelector((state) => state.authReducer);
@@ -52,7 +52,7 @@ const Plants = () => {
           <Loader />
         ) : (
           
-          <div class="ui three cards">
+          <div class="ui fluid cards">
             {plants.length === 0 ? (
               <div class="w-[600px] h-[300px] flex items-center justify-center gap-4">
                 <span>No plants found</span>

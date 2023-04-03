@@ -23,18 +23,18 @@ mongoose.connect(mongoUrl, err => {
 });
 
 
-
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 //import routes
 app.use("/api/authentication", authenticationRoutes);
 app.use("/api/plants", plantRoutes);
 app.use("/api/user", userRoutes);
-app.use("/",userRoutes);
+app.use("/",allplantsRoutes);
 
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../client/build/index.html'));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 
 // initiate express

@@ -79,7 +79,7 @@ const Plants = () => {
                     <Card.Description>{plant.description}</Card.Description>
                   </Card.Content>
                   <Card.Content extra>
-                  <List celled horizontal relaxed>
+                  <List celled horizontal>
                       <List.Item>
                         <Popup trigger={<span><Icon name="sun" />{plant.sunlight}</span> }content="Sunlight" inverted/>
                       </List.Item>
@@ -96,7 +96,7 @@ const Plants = () => {
                   </Card.Content>
                   <Card.Content extra>
                     <div class="ui fluid two bottom attached buttons">
-                      <Button animated="vertical" color="primary" as="a">
+                      <Button animated="vertical" color="blue" as="a">
                         <Link to={`/plants/${plant._id}`}>
                           <Button.Content hidden>Edit</Button.Content>
                           <Button.Content visible>

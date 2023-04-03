@@ -129,8 +129,6 @@ const Plant = () => {
     e.preventDefault();
     const errors = validateManyFields("plant", formData);
     setFormErrors({});
-    console.log("your formdata is", formData);
-    // console.log("Done! Here is the image info: ", result.info);
     if (errors.length > 0) {
       setFormErrors(
         errors.reduce((total, ob) => ({ ...total, [ob.field]: ob.err }), {})
@@ -221,7 +219,6 @@ const Plant = () => {
           <button class='ui blue submit button' onClick={(handleUploadButton)}>Upload</button>
           {mode === "update" && <button class='ui blue submit button' onClick={handleReset}>Reset</button>}
         </form>}
-        {/* <img id="uploadedimage" src=""></img> */}
 
         <img id="uploadedimage" src={formData.secure_url}></img>
         

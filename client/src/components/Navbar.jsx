@@ -45,13 +45,13 @@ const Navbar = () => {
           <ul className='flex flex-col gap-4 uppercase font-medium text-center'>
             {authState.isLoggedIn ? (
               <>
-                <li className="bg-blue-500 text-white hover:bg-blue-600 font-medium transition py-2 px-3">
-                  <Link to='/plants/add' className='block w-full h-full'> <i className="fa-solid fa-plus"></i> Add plant </Link>
+                <li className="bg-amber-300 hover:bg-amber-100 font-medium transition py-2 px-3">
+                  <Link to='/plants/add' className='block w-full h-full text-white hover:text-primary'> <i className="fa-solid fa-plus"></i> Add plant </Link>
                 </li>
-                <li className='py-2 px-3 cursor-pointer hover:bg-gray-200 transition rounded-sm' onClick={handleLogoutClick}>Logout</li>
+                <li className='py-2 px-3 cursor-pointer hover:bg-amber-300 text-amber-100 transition rounded-sm' onClick={handleLogoutClick}>Logout</li>
               </>
             ) : (
-              <li className='py-2 px-3 cursor-pointer hover:bg-amber-300 transition rounded-sm'><Link to="/login" className='text-amber-100'>Login</Link></li>
+              <li className='py-2 px-3 cursor-pointer hover:bg-amber-300 text-amber-100 transition rounded-sm'><Link to="/login" className='text-amber-100'>Login</Link></li>
             )}
           </ul>
         </div>

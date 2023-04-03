@@ -16,11 +16,17 @@ app.use(express.json());
 app.use(cors());
 
 //import mongoogse ORM
-const mongoUrl = process.env.MONGODB_URL;
-mongoose.connect(mongoUrl, err => {
-  if (err) throw err;
-  console.log("Mongodb connected...");
-});
+
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost:27017/myapp',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+);
+
+
+
 
 
 app.use(express.static(path.join(__dirname, '../client/public')));

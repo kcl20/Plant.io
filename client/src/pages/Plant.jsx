@@ -2,12 +2,14 @@ import React, { Component, useEffect, useState } from "react";
 import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { Textarea } from "../components/utils/Input";
-import { Text } from "../components/utils/Input";
-import Loader from "../components/utils/Loader";
+// import { Textarea } from "../components/utils/Input";
+// import { Text } from "../components/utils/Input";
+// import Loader from "../components/utils/Loader";
 import useFetch from "../hooks/useFetch";
 import MainLayout from "../layouts/MainLayout";
 import validateManyFields from "../validations";
+import { Dropdown } from 'semantic-ui-react'
+
 
 const Plant = () => {
   const authState = useSelector((state) => state.authReducer);
@@ -31,11 +33,24 @@ const Plant = () => {
           .getElementById("uploadedimage")
           .setAttribute("src", result.info.secure_url);
           setFormData({secure_url: result.info.secure_url});
-
       }
     }
   );
-     
+
+  const options = [
+    {
+      text: "Low",
+      value: "low"
+    },
+    {
+      text: "Medium",
+      value: "medium"
+    },
+    {
+      text: "High",
+      value: "high"
+    }
+  ];
 
   const mode = plantId === undefined ? "add" : "update";
   const [plant, setPlant] = useState(null);
@@ -81,13 +96,18 @@ const Plant = () => {
     myWidget.open();
     }
 
-
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const handleChange = (e, data) => {
+    if(e.target.value){
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    } else {
+        setFormData({
+            ...formData,
+            [data.name]: data.value
+        });
+    }
   };
 
   const handleReset = (e) => {
@@ -168,7 +188,8 @@ const Plant = () => {
           <div class="four fields">
               <div class="field">
               <label>Sunlight (High/Medium/Low)</label>
-              <input type="text" name="sunlight" id="sunlight" value={formData.sunlight} placeholder="Level of Sunlight" onChange={handleChange} />
+              <Dropdown name="sunlight" id="sunlight" value={formData.sunlight} placeholder="Level of Sunlight" 
+              fluid selection search scrolling options={options} onChange={handleChange}/>
               {fieldError("sunlight")}
             </div>
             <div class="field">
@@ -188,13 +209,13 @@ const Plant = () => {
             </div>
             <div class="field">
               <label>secure_url</label>
-              <input type="string" name="secure_url" id="secure_url" value={formData.secure_url} placeholder="secure_url" />
+              <input type="string" name="secure_url" id="secure_url" value={formData.secure_url} placeholder="secure_url" onChange={handleChange} />
               {fieldError("secure_url")}
             </div>
           </div>
           <button class="ui green submit button" type="submit" onClick={handleSubmit}>{mode === "add" ? "Add plant" : "Update Plant"}</button>
-          <button className='ui red submit button' onClick={() => navigate("/")}>Cancel</button>
-          <button className='ui blue submit button' onClick={(handleUploadButton)}>Upload</button>
+          <button class='ui red submit button' onClick={() => navigate("/")}>Cancel</button>
+          <button class='ui blue submit button' onClick={(handleUploadButton)}>Upload</button>
           {mode === "update" && <button class='ui blue submit button' onClick={handleReset}>Reset</button>}
         </form>}
         <img id="uploadedimage" src=""></img>

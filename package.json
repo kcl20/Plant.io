@@ -28,6 +28,7 @@
     "nodemon": "^2.0.22",
     "queue-microtask": "^1.2.3",
     "bcrypt": "^5.0.1",
+    "jsonwebtoken": "^8.5.1",
     "cors": "^2.8.5"
   }
 }

@@ -2,6 +2,9 @@
   "name": "plant-io",
   "version": "0.1.0",
   "description": "",
+  "engines": {
+    "node": "18.x"
+  },
   "main": "index.js",
   
   "scripts": {

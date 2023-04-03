@@ -29,7 +29,7 @@ mongoose.connect(mongoUrl, err => {
 app.use("/api/authentication", authenticationRoutes);
 app.use("/api/plants", plantRoutes);
 app.use("/api/user", userRoutes);
-app.use("/",allplantsRoutes);
+app.use("/",userRoutes);
 
 
 // app.get('*', (req, res) => {

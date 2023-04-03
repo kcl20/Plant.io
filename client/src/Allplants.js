@@ -45,14 +45,14 @@ export default function Allplants() {
             <div class="flex w-1/3 flex-wrap" key={plant._id}>
               <div class="w-full p-1 md:p-2">
                 <div class="relative">
-                  <Link to={`/api/plants/${plant._id}`}>
+                  <Link to={`/login`}>
                     <img
                       alt="gallery"
                       class="block h-full w-full rounded-lg object-cover object-center"
                       src={plant.secure_url} />
                   </Link>
                   <div className="texts">
-                    <Link to={`/api/plants/${plant._id}`}>
+                    <Link to={`/login`}>
                       <p class="relative bottom-10 rounded-lg left-0 p-2 text-white bg-black opacity-25 w-full">{plant.name}</p>
                     </Link>
                   </div>

@@ -32,7 +32,9 @@ const Plant = () => {
         document
           .getElementById("uploadedimage")
           .setAttribute("src", result.info.secure_url);
-          setFormData({secure_url: result.info.secure_url});
+
+          // setFormData({secure_url: result.info.secure_url});
+          setFormData({ ...formData, secure_url: result.info.secure_url });
       }
     }
   );
@@ -61,7 +63,7 @@ const Plant = () => {
     water: "",
     humidity: "",
     temperature: "",
-    secure_url: "",
+    secure_url: null,
   });
   const [formErrors, setFormErrors] = useState({});
 
@@ -127,7 +129,8 @@ const Plant = () => {
     e.preventDefault();
     const errors = validateManyFields("plant", formData);
     setFormErrors({});
-
+    console.log("your formdata is", formData);
+    // console.log("Done! Here is the image info: ", result.info);
     if (errors.length > 0) {
       setFormErrors(
         errors.reduce((total, ob) => ({ ...total, [ob.field]: ob.err }), {})
@@ -218,9 +221,9 @@ const Plant = () => {
           <button class='ui blue submit button' onClick={(handleUploadButton)}>Upload</button>
           {mode === "update" && <button class='ui blue submit button' onClick={handleReset}>Reset</button>}
         </form>}
-        <img id="uploadedimage" src=""></img>
+        {/* <img id="uploadedimage" src=""></img> */}
 
-        {/* <img id="uploadedimage" src={secure_url}></img> */}
+        <img id="uploadedimage" src={formData.secure_url}></img>
         
       </MainLayout>
     </>

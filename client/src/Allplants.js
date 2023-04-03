@@ -49,7 +49,7 @@ export default function Allplants() {
                     <img
                       alt="gallery"
                       class="block h-full w-full rounded-lg object-cover object-center"
-                      src={plant.imageUrl} />
+                      src={plant.secure_url} />
                   </Link>
                   <div className="texts">
                     <Link to={`/api/plants/${plant._id}`}>

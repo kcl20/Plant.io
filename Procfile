@@ -1,1 +1,1 @@
-web: npm run install-all && cd client && npm run build && cd .. && npm run dev
+web: npm run install-all && npm run dev

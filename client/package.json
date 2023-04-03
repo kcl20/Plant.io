@@ -28,7 +28,8 @@
     "redux-thunk": "^2.4.2",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.4",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "express": "^4.17.3"
   },
   "scripts": {
     "start": "react-scripts start",

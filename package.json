@@ -27,6 +27,7 @@
     "mongoose": "^6.2.3",
     "nodemon": "^2.0.22",
     "queue-microtask": "^1.2.3",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5"
   }
 }

@@ -29,7 +29,7 @@ mongoose.connect(
 
 
 
-app.use(express.static(path.join(__dirname, '../client/public')));
+
 
 //import routes
 app.use("/api/authentication", authenticationRoutes);
@@ -37,6 +37,8 @@ app.use("/api/plants", plantRoutes);
 app.use("/api/user", userRoutes);
 app.use("/",allplantsRoutes);
 
+
+app.use(express.static(path.join(__dirname, '../client/public')));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/public/index.html'));

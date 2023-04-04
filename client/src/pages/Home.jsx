@@ -12,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     document.title = authState.isLoggedIn
-      ? `${authState.user.name}'s plants`
+      ? `s plants`
       : "Plant.io";
   }, [authState]);
 
@@ -40,7 +40,7 @@ const Home = () => {
         ) : (
           <>
             <h1 className="text-lg mt-8 mx-8 border-b border-b-gray-300">
-              Welcome {authState.user.name}
+              {/* Welcome {authState.user.name} */}
             </h1>
             <Plants />
           </>
